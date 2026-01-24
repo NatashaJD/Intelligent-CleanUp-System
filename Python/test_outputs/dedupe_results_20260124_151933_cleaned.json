@@ -1,0 +1,46 @@
+[
+  {
+    "id": "7",
+    "name": "John Smith",
+    "email": "j.smith@email.com",
+    "phone": "555-0101",
+    "address": "123 Main St",
+    "city": "Springfield",
+    "state": "IL",
+    "zip_code": "62701",
+    "created_date": "2023-01-21"
+  },
+  {
+    "id": "2",
+    "name": "Jane Doe",
+    "email": "jane.doe@email.com",
+    "phone": "555-0102",
+    "address": "456 Oak Ave",
+    "city": "Springfield",
+    "state": "IL",
+    "zip_code": "62702",
+    "created_date": "2023-01-16"
+  },
+  {
+    "id": "4",
+    "name": "Bob Johnson",
+    "email": "bob.johnson@email.com",
+    "phone": "555-0103",
+    "address": "789 Pine Rd",
+    "city": "Chicago",
+    "state": "IL",
+    "zip_code": "60601",
+    "created_date": "2023-01-18"
+  },
+  {
+    "id": "6",
+    "name": "Alice Brown",
+    "email": "alice.brown@email.com",
+    "phone": "555-0104",
+    "address": "321 Elm St",
+    "city": "Peoria",
+    "state": "IL",
+    "zip_code": "61601",
+    "created_date": "2023-01-20"
+  }
+]

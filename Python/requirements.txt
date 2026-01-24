@@ -1,0 +1,32 @@
+# Core data processing
+pandas>=2.0.0
+numpy>=1.24.0
+
+# File encoding detection
+chardet>=5.0.0
+
+# Date parsing
+python-dateutil>=2.8.0
+
+# Fuzzy string matching
+rapidfuzz>=3.0.0
+
+# GUI framework
+streamlit>=1.28.0
+
+# Testing framework
+hypothesis>=6.82.0
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Logging and monitoring
+tracemalloc  # Built-in Python module for memory tracking
+
+# Development tools
+black>=23.0.0  # Code formatting
+flake8>=6.0.0  # Linting
+mypy>=1.5.0    # Type checking
+
+# Data visualization (for GUI charts)
+plotly>=5.15.0
+matplotlib>=3.7.0

@@ -1,0 +1,34 @@
+[
+  {
+    "product_id": "P001",
+    "name": "Wireless Headphones",
+    "brand": "TechCorp",
+    "price": "99.99",
+    "category": "Electronics",
+    "description": "High-quality wireless headphones with noise cancellation"
+  },
+  {
+    "product_id": "P002",
+    "name": "Wireless Headphones",
+    "brand": "TechCorp",
+    "price": "$99.99",
+    "category": "Electronics",
+    "description": "High quality wireless headphones with noise cancellation"
+  },
+  {
+    "product_id": "P003",
+    "name": "Bluetooth Speaker",
+    "brand": "SoundMax",
+    "price": "49.99",
+    "category": "Electronics",
+    "description": "Portable Bluetooth speaker with excellent sound quality"
+  },
+  {
+    "product_id": "P004",
+    "name": "Wireless Headphones Pro",
+    "brand": "TechCorp",
+    "price": "99.99",
+    "category": "Electronics",
+    "description": "Premium wireless headphones with advanced noise cancellation"
+  }
+]

@@ -1,0 +1,217 @@
+2026-01-24 13:41:09,673 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 13:41:09,674 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 13:41:09,717 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 13:41:09,735 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: PASSED
+2026-01-24 13:41:09,806 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_products.json (0.0MB)
+2026-01-24 13:41:09,817 - dedupe_system.dedupe_system.core.loader - INFO - loader:211 - Successfully loaded JSON: 4 rows, 6 columns
+2026-01-24 13:41:09,819 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: PASSED
+2026-01-24 13:41:09,825 - dedupe_system - ERROR - exceptions:132 - System error in error handling test: File not found: nonexistent_file.csv - Details: {'file_path': 'nonexistent_file.csv'}
+2026-01-24 13:45:37,112 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 13:45:37,151 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 4 rows and 5 configured fields
+2026-01-24 13:45:37,160 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 11 total columns
+2026-01-24 13:46:29,458 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 13:46:29,460 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 13:46:29,467 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 13:46:29,484 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 6 configured fields
+2026-01-24 13:46:29,488 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 15 total columns
+2026-01-24 13:49:48,667 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 13:49:48,669 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 13:49:48,674 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 13:49:48,676 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: PASSED
+2026-01-24 13:49:48,677 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 7 configured fields
+2026-01-24 13:49:48,680 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 16 total columns
+2026-01-24 13:49:48,683 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_products.json (0.0MB)
+2026-01-24 13:49:48,686 - dedupe_system.dedupe_system.core.loader - INFO - loader:211 - Successfully loaded JSON: 4 rows, 6 columns
+2026-01-24 13:49:48,687 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: PASSED
+2026-01-24 13:49:48,688 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 4 rows and 5 configured fields
+2026-01-24 13:49:48,690 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 11 total columns
+2026-01-24 13:49:48,691 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: FAILED
+2026-01-24 13:49:48,691 - dedupe_system.dedupe_system.core.loader - WARNING - loader:283 - Validation errors: ['Dataset is empty (no rows)', 'Dataset has no columns']
+2026-01-24 13:49:48,693 - dedupe_system.dedupe_system.core.loader - INFO - loader:281 - Validation complete: PASSED
+2026-01-24 13:49:48,693 - dedupe_system.dedupe_system.core.loader - INFO - loader:285 - Validation warnings: ["Columns with all missing values: ['col1', 'col2']", "Columns with >90% missing values: ['col1 (100.0% missing)', 'col2 (100.0% missing)']"]
+2026-01-24 13:49:48,696 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 2000 rows and 4 configured fields
+2026-01-24 13:49:48,716 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 8 total columns
+2026-01-24 13:53:58,497 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 13:53:58,498 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 13:53:58,505 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 13:53:58,506 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['name']
+2026-01-24 13:53:58,507 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 1 configured fields
+2026-01-24 13:53:58,508 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 10 total columns
+2026-01-24 13:53:58,510 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,511 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 7 records
+2026-01-24 13:53:58,514 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['name', 'phone']
+2026-01-24 13:53:58,514 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 2 configured fields
+2026-01-24 13:53:58,516 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 11 total columns
+2026-01-24 13:53:58,517 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,517 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 7 records
+2026-01-24 13:53:58,519 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['email', 'phone']
+2026-01-24 13:53:58,519 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 2 configured fields
+2026-01-24 13:53:58,520 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 11 total columns
+2026-01-24 13:53:58,521 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,522 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 1 duplicate groups from 7 records
+2026-01-24 13:53:58,523 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_products.json (0.0MB)
+2026-01-24 13:53:58,526 - dedupe_system.dedupe_system.core.loader - INFO - loader:211 - Successfully loaded JSON: 4 rows, 6 columns
+2026-01-24 13:53:58,528 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 4 records using fields: ['name', 'brand']
+2026-01-24 13:53:58,529 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 4 rows and 2 configured fields
+2026-01-24 13:53:58,530 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 8 total columns
+2026-01-24 13:53:58,531 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,531 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 1 duplicate groups from 4 records
+2026-01-24 13:53:58,534 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 4 rows and 3 configured fields
+2026-01-24 13:53:58,535 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 9 total columns
+2026-01-24 13:53:58,538 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 1000 records using fields: ['name', 'email']
+2026-01-24 13:53:58,538 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 1000 rows and 2 configured fields
+2026-01-24 13:53:58,544 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 7 total columns
+2026-01-24 13:53:58,604 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.07 seconds
+2026-01-24 13:53:58,604 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 0 duplicate groups from 1000 records
+2026-01-24 13:53:58,606 - dedupe_system.dedupe_system.core.exact_matcher - WARNING - exact_matcher:67 - Empty DataFrame provided for duplicate detection
+2026-01-24 13:53:58,607 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 1 records using fields: ['name']
+2026-01-24 13:53:58,608 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 1 rows and 1 configured fields
+2026-01-24 13:53:58,610 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 3 total columns
+2026-01-24 13:53:58,610 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,611 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 0 duplicate groups from 1 records
+2026-01-24 13:53:58,613 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 5 records using fields: ['name', 'email']
+2026-01-24 13:53:58,613 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 5 rows and 2 configured fields
+2026-01-24 13:53:58,614 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 6 total columns
+2026-01-24 13:53:58,616 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.00 seconds
+2026-01-24 13:53:58,616 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 5 records
+2026-01-24 15:00:01,965 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 15:00:01,969 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 15:00:02,033 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 15:00:02,055 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['name', 'phone']
+2026-01-24 15:00:02,056 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 2 configured fields
+2026-01-24 15:00:02,065 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 11 total columns
+2026-01-24 15:00:02,078 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.02 seconds
+2026-01-24 15:00:02,093 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 7 records
+2026-01-24 15:00:02,101 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:00:02,102 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "a519272c-01e5-4b23-af68-a8f34c7b2293", "decisions_count": 1}}
+2026-01-24 15:00:02,105 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,105 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:168 - No records found for group exact_group_1
+2026-01-24 15:00:02,105 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 1, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,106 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 1, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,115 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:00:02,116 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "024a4b32-0622-450f-966e-de260ebca121", "decisions_count": 1}}
+2026-01-24 15:00:02,119 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,124 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:262 - No records found for group exact_group_1
+2026-01-24 15:00:02,125 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 1, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,129 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 1, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,135 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:00:02,135 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "7753c6f4-3394-41de-9bac-6efe7d811478", "decisions_count": 1}}
+2026-01-24 15:00:02,138 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_2
+2026-01-24 15:00:02,138 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:320 - No records found for group exact_group_2
+2026-01-24 15:00:02,139 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 1, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,139 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 1, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,146 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:00:02,149 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "6a336dab-e81b-4c3e-95b1-6bc3c3fc55d9", "decisions_count": 2}}
+2026-01-24 15:00:02,152 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,153 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:262 - No records found for group exact_group_1
+2026-01-24 15:00:02,153 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_2
+2026-01-24 15:00:02,153 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:262 - No records found for group exact_group_2
+2026-01-24 15:00:02,153 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,154 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,161 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:00:02,163 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "ddcf0268-cba6-415e-99ee-f27eda065099", "decisions_count": 2}}
+2026-01-24 15:00:02,167 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,168 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:168 - No records found for group exact_group_1
+2026-01-24 15:00:02,169 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_2
+2026-01-24 15:00:02,170 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:168 - No records found for group exact_group_2
+2026-01-24 15:00:02,171 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,171 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,175 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:00:02,176 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "1dd494d9-f84d-4059-8b45-ac11ba3fa308", "decisions_count": 2}}
+2026-01-24 15:00:02,181 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,181 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:320 - No records found for group exact_group_1
+2026-01-24 15:00:02,182 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_2
+2026-01-24 15:00:02,182 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:320 - No records found for group exact_group_2
+2026-01-24 15:00:02,182 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,184 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,186 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:00:02,187 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "3ac7eef7-7234-4999-8827-e6b6e6b5033e", "decisions_count": 2}}
+2026-01-24 15:00:02,189 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_1
+2026-01-24 15:00:02,189 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:168 - No records found for group exact_group_1
+2026-01-24 15:00:02,190 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:358 - Group record finding not fully implemented for group exact_group_2
+2026-01-24 15:00:02,190 - dedupe_system.dedupe_system.core.resolver - WARNING - resolver:262 - No records found for group exact_group_2
+2026-01-24 15:00:02,190 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:00:02,191 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:00:02,193 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:00:02,195 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "d2c2a0d6-8eab-439d-9c0f-3dff83c721dd", "decisions_count": 1}}
+2026-01-24 15:00:02,198 - dedupe_system.dedupe_system.core.resolver - ERROR - resolver:113 - Failed to apply decision for group test_group: Unknown resolution action: INVALID_ACTION - Details: {'group_id': 'test_group', 'action': 'INVALID_ACTION'}
+2026-01-24 15:00:02,200 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "test_group", "action": "ERROR", "reason": "Resolution failed: Unknown resolution action: INVALID_ACTION - Details: {"group_id": "test_group", "action": "INVALID_ACTION"}", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:00:02.200811"}
+2026-01-24 15:00:02,201 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 0, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 1}}
+2026-01-24 15:00:02,202 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 0, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 1}
+2026-01-24 15:09:43,297 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 15:09:43,300 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 15:09:43,314 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 15:09:43,336 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['name', 'phone']
+2026-01-24 15:09:43,337 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 2 configured fields
+2026-01-24 15:09:43,346 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 12 total columns
+2026-01-24 15:09:43,352 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.01 seconds
+2026-01-24 15:09:43,353 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 7 records
+2026-01-24 15:09:43,371 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:09:43,371 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "ec48d30c-7e71-4a9a-acf4-2b24e4ae0e11", "decisions_count": 1}}
+2026-01-24 15:09:43,386 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "0", "action": "KEPT", "reason": "Selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.386776"}
+2026-01-24 15:09:43,388 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "2", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.388698"}
+2026-01-24 15:09:43,390 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "6", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.390914"}
+2026-01-24 15:09:43,398 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 1, "records_kept": 1, "records_soft_deleted": 2, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 0, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:09:43,399 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 1, 'records_kept': 1, 'records_soft_deleted': 2, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 0, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:09:43,406 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 1 resolution decisions to 7 records
+2026-01-24 15:09:43,407 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "b3500fc8-31ad-429d-a7c1-87283b0ce5da", "decisions_count": 1}}
+2026-01-24 15:09:43,432 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "0,2,6", "action": "MERGED", "reason": "Merged 3 records in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.432620"}
+2026-01-24 15:09:43,433 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 1, "records_kept": 0, "records_soft_deleted": 0, "records_hard_deleted": 0, "records_merged": 3, "records_flagged": 0, "merge_operations": 1, "errors": 0}}
+2026-01-24 15:09:43,434 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 1, 'records_kept': 0, 'records_soft_deleted': 0, 'records_hard_deleted': 0, 'records_merged': 3, 'records_flagged': 0, 'merge_operations': 1, 'errors': 0}
+2026-01-24 15:09:43,439 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:09:43,439 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "ff5d89a2-8ddc-4ce6-9f8d-48828103a55f", "decisions_count": 2}}
+2026-01-24 15:09:43,451 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "0", "action": "KEPT", "reason": "Selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.451690"}
+2026-01-24 15:09:43,454 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "2", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.454343"}
+2026-01-24 15:09:43,456 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "6", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.456181"}
+2026-01-24 15:09:43,464 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "1", "action": "FLAGGED", "reason": "Flagged for manual review in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.464147"}
+2026-01-24 15:09:43,467 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "4", "action": "FLAGGED", "reason": "Flagged for manual review in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.467891"}
+2026-01-24 15:09:43,468 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 1, "records_soft_deleted": 2, "records_hard_deleted": 0, "records_merged": 0, "records_flagged": 2, "merge_operations": 0, "errors": 0}}
+2026-01-24 15:09:43,469 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 1, 'records_soft_deleted': 2, 'records_hard_deleted': 0, 'records_merged': 0, 'records_flagged': 2, 'merge_operations': 0, 'errors': 0}
+2026-01-24 15:09:43,482 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:09:43,482 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "b7b45f3c-48c9-455a-9767-9dc4a0557f10", "decisions_count": 2}}
+2026-01-24 15:09:43,497 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "0,2,6", "action": "MERGED", "reason": "Merged 3 records in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.497927"}
+2026-01-24 15:09:43,501 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "1", "action": "KEPT", "reason": "Selected for keeping in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.501190"}
+2026-01-24 15:09:43,503 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "4", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:09:43.503636"}
+2026-01-24 15:09:43,504 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 1, "records_soft_deleted": 1, "records_hard_deleted": 0, "records_merged": 3, "records_flagged": 0, "merge_operations": 1, "errors": 0}}
+2026-01-24 15:09:43,505 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 1, 'records_soft_deleted': 1, 'records_hard_deleted': 0, 'records_merged': 3, 'records_flagged': 0, 'merge_operations': 1, 'errors': 0}
+2026-01-24 15:19:33,035 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-24 15:19:33,041 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 15:19:33,062 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
+2026-01-24 15:19:33,070 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:78 - Starting exact duplicate detection on 7 records using fields: ['name', 'phone']
+2026-01-24 15:19:33,072 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:395 - Normalizing DataFrame with 7 rows and 2 configured fields
+2026-01-24 15:19:33,076 - dedupe_system.dedupe_system.core.normalizer - INFO - normalizer:430 - Normalization complete: 12 total columns
+2026-01-24 15:19:33,082 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:104 - Exact duplicate detection completed in 0.01 seconds
+2026-01-24 15:19:33,084 - dedupe_system.dedupe_system.core.exact_matcher - INFO - exact_matcher:105 - Found 2 duplicate groups from 7 records
+2026-01-24 15:19:33,088 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:84 - Applying 2 resolution decisions to 7 records
+2026-01-24 15:19:33,089 - dedupe_system.audit - INFO - logging_config:153 - {"event": "processing_start", "total_records": 7, "config": {"session_id": "cefe6193-7af7-42de-8af4-a7d96c99f68a", "decisions_count": 2}}
+2026-01-24 15:19:33,108 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "0,2,6", "action": "MERGED", "reason": "Merged 3 records in group exact_group_1", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:19:33.108426"}
+2026-01-24 15:19:33,110 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "1", "action": "KEPT", "reason": "Selected for keeping in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:19:33.110893"}
+2026-01-24 15:19:33,121 - dedupe_system.audit - INFO - logging_config:144 - {"record_id": "4", "action": "SOFT_DELETED", "reason": "Not selected for keeping in group exact_group_2", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:19:33.121787"}
+2026-01-24 15:19:33,123 - dedupe_system.audit - INFO - logging_config:161 - {"event": "processing_end", "stats": {"total_groups_processed": 2, "records_kept": 1, "records_soft_deleted": 1, "records_hard_deleted": 0, "records_merged": 3, "records_flagged": 0, "merge_operations": 1, "errors": 0}}
+2026-01-24 15:19:33,124 - dedupe_system.dedupe_system.core.resolver - INFO - resolver:127 - Resolution complete: {'total_groups_processed': 2, 'records_kept': 1, 'records_soft_deleted': 1, 'records_hard_deleted': 0, 'records_merged': 3, 'records_flagged': 0, 'merge_operations': 1, 'errors': 0}
+2026-01-24 15:19:33,125 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:69 - Generating cleaned dataset in csv format
+2026-01-24 15:19:33,183 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:92 - Cleaned dataset generated: test_outputs\test_cleaned_csv.csv
+2026-01-24 15:19:33,190 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:69 - Generating cleaned dataset in json format
+2026-01-24 15:19:33,223 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:92 - Cleaned dataset generated: test_outputs\test_cleaned_json.json
+2026-01-24 15:19:33,224 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:111 - Generating audit log with 3 entries
+2026-01-24 15:19:33,263 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:141 - Audit log generated: test_outputs\test_audit_log.csv
+2026-01-24 15:19:33,277 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:170 - Generating summary report
+2026-01-24 15:19:33,306 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:210 - Summary report generated: test_outputs\test_summary_report.json
+2026-01-24 15:19:33,308 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:235 - Generating all output files
+2026-01-24 15:19:33,308 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:69 - Generating cleaned dataset in csv format
+2026-01-24 15:19:33,320 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:92 - Cleaned dataset generated: test_outputs\test_complete_cleaned.csv
+2026-01-24 15:19:33,321 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:111 - Generating audit log with 3 entries
+2026-01-24 15:19:33,332 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:141 - Audit log generated: test_outputs\test_complete_audit.csv
+2026-01-24 15:19:33,333 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:170 - Generating summary report
+2026-01-24 15:19:33,357 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:210 - Summary report generated: test_outputs\test_complete_summary.json
+2026-01-24 15:19:33,357 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:259 - All outputs generated successfully: ['cleaned_data', 'audit_log', 'summary_report']
+2026-01-24 15:19:33,360 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:235 - Generating all output files
+2026-01-24 15:19:33,361 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:69 - Generating cleaned dataset in json format
+2026-01-24 15:19:33,373 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:92 - Cleaned dataset generated: test_outputs\dedupe_results_20260124_151933_cleaned.json
+2026-01-24 15:19:33,374 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:111 - Generating audit log with 3 entries
+2026-01-24 15:19:33,390 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:141 - Audit log generated: test_outputs\dedupe_results_20260124_151933_audit.csv
+2026-01-24 15:19:33,391 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:170 - Generating summary report
+2026-01-24 15:19:33,418 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:210 - Summary report generated: test_outputs\dedupe_results_20260124_151933_summary.json
+2026-01-24 15:19:33,419 - dedupe_system.dedupe_system.core.output_generator - INFO - output_generator:259 - All outputs generated successfully: ['cleaned_data', 'audit_log', 'summary_report']
+2026-01-24 15:19:33,438 - dedupe_system.dedupe_system.core.loader - INFO - loader:78 - Loading file: test_data\sample_customers.csv (0.0MB)
+2026-01-24 15:19:33,441 - dedupe_system.dedupe_system.core.loader - INFO - loader:128 - Successfully loaded CSV: 7 rows, 9 columns
