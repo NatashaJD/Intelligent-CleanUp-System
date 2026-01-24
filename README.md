@@ -1,16 +1,20 @@
 # Intelligent Duplicate Detection & Cleanup System
 
-A comprehensive Python-based system for detecting and resolving duplicate records in CSV and JSON datasets using exact matching algorithms with an intuitive Streamlit GUI interface.
+A comprehensive Python-based system for detecting and resolving duplicate records in CSV and JSON datasets using both exact and fuzzy matching algorithms with an intuitive Streamlit GUI interface.
 
 ## Features
 
+- **Dual Matching System**: Both exact and fuzzy duplicate detection
+- **Advanced Algorithms**: 5 configurable fuzzy matching algorithms (RapidFuzz)
 - **File Support**: CSV and JSON file formats with automatic encoding detection
 - **Data Validation**: Comprehensive input validation with detailed error reporting
-- **Exact Matching**: Hash-based duplicate detection with O(n) time complexity
+- **Smart Performance**: O(n) exact matching, blocking strategies for fuzzy matching
 - **Data Normalization**: Text, numeric, date, phone, and email field normalization
-- **Interactive GUI**: User-friendly Streamlit interface for configuration and results
+- **Interactive GUI**: User-friendly Streamlit interface with visual analytics
+- **Advanced Resolution**: Manual decision override with batch processing capabilities
+- **Visual Analytics**: Interactive charts, similarity distributions, performance metrics
+- **Comprehensive Reporting**: Multiple export formats with detailed analysis
 - **Audit Trail**: Complete logging and audit trail for compliance
-- **Export Options**: Download cleaned data and summary reports
 
 ## Installation
 
@@ -75,25 +79,30 @@ Options:
 
 - Select fields to use for duplicate detection
 - Choose field types (text, numeric, date, phone, email) for better normalization
-- Configure matching settings (exact matching is available in MVP)
+- Configure matching settings: exact, fuzzy, or both
+- Adjust fuzzy matching threshold (50-95%)
+- Select similarity algorithm (WRatio, ratio, partial_ratio, token_sort_ratio, token_set_ratio)
 
 ### 3. Duplicate Detection
 
 - Click "Start Duplicate Detection" to begin processing
 - View progress indicators and status updates
-- Processing includes data normalization and exact matching
+- Processing includes data normalization, exact matching, and fuzzy matching
+- Real-time performance metrics and processing statistics
 
 ### 4. Results
 
 - Review detected duplicate groups with similarity scores
-- See recommended actions for each group
-- Download cleaned data and summary reports
+- Interactive charts showing group distributions and similarity analysis
+- Manual decision override for each duplicate group
+- See recommended actions with ability to customize
+- Download cleaned data, analysis reports, and summary statistics
 
 ## File Format Requirements
 
 ### CSV Files
 
-- Must have a header row with column names
+- Must have header row with column names
 - UTF-8 encoding recommended (auto-detection available)
 - Standard CSV format with comma separators
 
@@ -110,14 +119,16 @@ dedupe_system/
 ├── core/                   # Core processing components
 │   ├── loader.py          # File loading and validation
 │   ├── normalizer.py      # Data normalization
-│   ├── exact_matcher.py   # Duplicate detection
+│   ├── exact_matcher.py   # Exact duplicate detection
+│   ├── fuzzy_matcher.py   # Fuzzy duplicate detection (RapidFuzz)
 │   ├── resolver.py        # Duplicate resolution
 │   ├── output_generator.py # Results and reports
 │   ├── models.py          # Data models
 │   ├── exceptions.py      # Error handling
 │   └── logging_config.py  # Logging setup
 ├── gui/                   # Streamlit GUI interface
-│   └── app.py            # Main GUI application
+│   ├── app.py            # Main GUI application (enhanced)
+│   └── app_clean.py      # Simplified GUI version
 ├── logs/                  # System and audit logs
 ├── outputs/              # Generated reports and cleaned data
 └── main.py               # Application entry point
@@ -127,8 +138,13 @@ dedupe_system/
 
 1. **File Loading**: Parse CSV/JSON with encoding detection and validation
 2. **Data Normalization**: Clean and standardize field values by type
-3. **Duplicate Detection**: Hash-based exact matching with composite keys
-4. **Results Generation**: Create duplicate groups with similarity scores
+3. **Duplicate Detection**: 
+   - Hash-based exact matching with composite keys (O(n) complexity)
+   - RapidFuzz-based fuzzy matching with blocking strategies
+   - Configurable similarity thresholds and algorithms
+4. **Results Generation**: Create duplicate groups with similarity scores and recommendations
+5. **Interactive Review**: Manual decision override with batch processing capabilities
+6. **Export**: Generate cleaned datasets, analysis reports, and audit logs
 5. **Export**: Generate cleaned datasets and audit reports
 
 ## Field Types and Normalization
@@ -150,12 +166,17 @@ The system maintains comprehensive logs in the `logs/` directory:
 
 ## Performance Characteristics
 
-- **Time Complexity**: O(n) for exact duplicate detection
+- **Time Complexity**: 
+  - O(n) for exact duplicate detection
+  - O(n²) worst case for fuzzy matching (optimized with blocking strategies)
 - **Memory Usage**: Approximately 2-3x input file size during processing
+- **Fuzzy Matching Optimization**: Blocking strategies reduce comparisons significantly
+- **Real-time Metrics**: Processing speed and efficiency tracking
 - **Recommended Limits**:
   - File size: Up to 100MB
   - Records: Up to 1 million records
   - Fields: Up to 100 columns
+  - Fuzzy matching: Optimized for datasets up to 100K records
 
 ## Troubleshooting
 
@@ -200,13 +221,20 @@ tail -f logs/system_$(date +%Y%m%d).log
 ### Running Tests
 
 ```bash
-# Run existing test files
+# Run core component tests
 python test_loader.py
 python test_normalizer.py
 python test_exact_matcher.py
 python test_resolver.py
 python test_output_generator.py
 python test_error_handling.py
+
+# Run integration tests
+python test_system_integration.py
+python test_fuzzy_integration.py
+
+# Run all tests together
+python -m pytest test_*.py -v
 ```
 
 ### Code Structure
@@ -217,21 +245,41 @@ The system follows a modular architecture with clear separation of concerns:
 - All components use dependency injection for testability
 - Comprehensive error handling and logging throughout
 
-## Limitations (MVP Version)
+## Current Features
 
-- **Fuzzy Matching**: Not implemented (planned for Phase 2)
+### Core Functionality ✅
+
+- **Dual Detection Methods**: Both exact and fuzzy matching implemented
+- **Advanced Fuzzy Matching**: RapidFuzz with 5 configurable algorithms (WRatio, ratio, partial_ratio, token_sort_ratio, token_set_ratio)
+- **Smart Performance**: Blocking strategies for large datasets
+- **Interactive GUI**: Complete workflow with visual analytics
+- **Advanced Visualization**: Interactive charts, similarity distributions, performance metrics
+- **Manual Resolution Interface**: User decision override with batch processing
+- **Comprehensive Reporting**: Multiple export formats with detailed analysis
+
+### Technical Capabilities ✅
+
+- **File Support**: CSV and JSON with automatic encoding detection
+- **Data Validation**: Comprehensive input validation with detailed error reporting
+- **Multi-Algorithm Matching**: Hash-based exact + RapidFuzz fuzzy detection
+- **Data Normalization**: Text, numeric, date, phone, and email field normalization
+- **Performance Optimized**: O(n) exact matching, blocking for fuzzy matching
+- **Audit Trail**: Complete logging and audit trail for compliance
+- **Real-time Processing**: Progress tracking and performance metrics
+
+## Limitations
+
 - **Batch Processing**: Single file processing only
-- **Advanced Resolution**: Manual resolution interface not fully implemented
-- **Performance Optimization**: Basic implementation without advanced optimizations
+- **Property-based Testing**: Comprehensive test suite using Hypothesis (optional enhancement)
+- **Enterprise Features**: Advanced compliance and audit features
 
-## Future Enhancements (Phase 2)
+## Future Enhancements
 
-- Fuzzy string matching with configurable algorithms
-- Batch processing for multiple files
-- Advanced duplicate resolution interface
-- Performance optimizations for large datasets
-- Property-based testing suite
-- Advanced visualization and reporting
+- **Multi-file Batch Processing**: Process multiple files simultaneously
+- **API Integration**: REST API for programmatic access
+- **Cloud Deployment**: Docker containerization and cloud-ready deployment
+- **Advanced Analytics**: Machine learning-based duplicate prediction
+- **Enterprise Security**: Role-based access control and encryption
 
 ## Support
 
