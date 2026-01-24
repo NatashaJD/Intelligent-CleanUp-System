@@ -1,0 +1,297 @@
+# Intelligent Duplicate Detection & Cleanup System
+
+A comprehensive Python-based system for detecting and resolving duplicate records in CSV and JSON datasets using both exact and fuzzy matching algorithms with an intuitive Streamlit GUI interface.
+
+## Features
+
+- **Dual Matching System**: Both exact and fuzzy duplicate detection
+- **Advanced Algorithms**: 5 configurable fuzzy matching algorithms (RapidFuzz)
+- **File Support**: CSV and JSON file formats with automatic encoding detection
+- **Data Validation**: Comprehensive input validation with detailed error reporting
+- **Smart Performance**: O(n) exact matching, blocking strategies for fuzzy matching
+- **Data Normalization**: Text, numeric, date, phone, and email field normalization
+- **Interactive GUI**: User-friendly Streamlit interface with visual analytics
+- **Advanced Resolution**: Manual decision override with batch processing capabilities
+- **Visual Analytics**: Interactive charts, similarity distributions, performance metrics
+- **Comprehensive Reporting**: Multiple export formats with detailed analysis
+- **Audit Trail**: Complete logging and audit trail for compliance
+
+## Installation
+
+### Prerequisites
+
+- Python 3.8 or higher
+- pip package manager
+
+### Setup
+
+1. **Clone or download the project**:
+
+   ```bash
+   cd Python
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Verify installation**:
+
+   ```bash
+   python -m dedupe_system.main --version
+   ```
+
+## Usage
+
+### Launch the GUI Interface
+
+```bash
+python -m dedupe_system.main --gui
+```
+
+This will start the Streamlit web interface at `http://localhost:8501`
+
+### Command Line Options
+
+```bash
+python -m dedupe_system.main [OPTIONS]
+
+Options:
+  --gui                    Launch the Streamlit GUI interface (default)
+  --version               Show version information
+  --log-level LEVEL       Set logging level (DEBUG, INFO, WARNING, ERROR)
+  --log-dir DIR           Directory for log files (default: logs)
+  --help                  Show help message
+```
+
+## Using the GUI
+
+### 1. File Upload
+
+- Click "Browse files" to select your CSV or JSON file
+- Supported formats: CSV, JSON
+- Maximum file size: 100MB
+- The system will automatically validate your file and show a preview
+
+### 2. Configuration
+
+- Select fields to use for duplicate detection
+- Choose field types (text, numeric, date, phone, email) for better normalization
+- Configure matching settings: exact, fuzzy, or both
+- Adjust fuzzy matching threshold (50-95%)
+- Select similarity algorithm (WRatio, ratio, partial_ratio, token_sort_ratio, token_set_ratio)
+
+### 3. Duplicate Detection
+
+- Click "Start Duplicate Detection" to begin processing
+- View progress indicators and status updates
+- Processing includes data normalization, exact matching, and fuzzy matching
+- Real-time performance metrics and processing statistics
+
+### 4. Results
+
+- Review detected duplicate groups with similarity scores
+- Interactive charts showing group distributions and similarity analysis
+- Manual decision override for each duplicate group
+- See recommended actions with ability to customize
+- Download cleaned data, analysis reports, and summary statistics
+
+## File Format Requirements
+
+### CSV Files
+
+- Must have header row with column names
+- UTF-8 encoding recommended (auto-detection available)
+- Standard CSV format with comma separators
+
+### JSON Files
+
+- Array of objects: `[{"field1": "value1"}, {"field2": "value2"}]`
+- Object with arrays: `{"field1": ["val1", "val2"], "field2": ["val3", "val4"]}`
+- UTF-8 encoding required
+
+## System Architecture
+
+```
+dedupe_system/
+├── core/                   # Core processing components
+│   ├── loader.py          # File loading and validation
+│   ├── normalizer.py      # Data normalization
+│   ├── exact_matcher.py   # Exact duplicate detection
+│   ├── fuzzy_matcher.py   # Fuzzy duplicate detection (RapidFuzz)
+│   ├── resolver.py        # Duplicate resolution
+│   ├── output_generator.py # Results and reports
+│   ├── models.py          # Data models
+│   ├── exceptions.py      # Error handling
+│   └── logging_config.py  # Logging setup
+├── gui/                   # Streamlit GUI interface
+│   ├── app.py            # Main GUI application (enhanced)
+│   └── app_clean.py      # Simplified GUI version
+├── logs/                  # System and audit logs
+├── outputs/              # Generated reports and cleaned data
+└── main.py               # Application entry point
+```
+
+## Data Processing Pipeline
+
+1. **File Loading**: Parse CSV/JSON with encoding detection and validation
+2. **Data Normalization**: Clean and standardize field values by type
+3. **Duplicate Detection**: 
+   - Hash-based exact matching with composite keys (O(n) complexity)
+   - RapidFuzz-based fuzzy matching with blocking strategies
+   - Configurable similarity thresholds and algorithms
+4. **Results Generation**: Create duplicate groups with similarity scores and recommendations
+5. **Interactive Review**: Manual decision override with batch processing capabilities
+6. **Export**: Generate cleaned datasets, analysis reports, and audit logs
+5. **Export**: Generate cleaned datasets and audit reports
+
+## Field Types and Normalization
+
+- **Text**: Lowercase, whitespace normalization, Unicode handling
+- **Numeric**: Remove currency symbols, formatting characters
+- **Date**: Standardize to ISO format (YYYY-MM-DD)
+- **Phone**: Extract digits only, handle US number formats
+- **Email**: Lowercase normalization with basic validation
+
+## Logging and Audit Trail
+
+The system maintains comprehensive logs in the `logs/` directory:
+
+- `system_YYYYMMDD.log`: General system operations and debugging
+- `errors_YYYYMMDD.log`: Error messages and stack traces
+- `audit_YYYYMMDD_HHMMSS.log`: Structured audit trail for compliance
+- `activity_YYYYMMDD_HHMMSS.log`: Detailed activity logging
+
+## Performance Characteristics
+
+- **Time Complexity**: 
+  - O(n) for exact duplicate detection
+  - O(n²) worst case for fuzzy matching (optimized with blocking strategies)
+- **Memory Usage**: Approximately 2-3x input file size during processing
+- **Fuzzy Matching Optimization**: Blocking strategies reduce comparisons significantly
+- **Real-time Metrics**: Processing speed and efficiency tracking
+- **Recommended Limits**:
+  - File size: Up to 100MB
+  - Records: Up to 1 million records
+  - Fields: Up to 100 columns
+  - Fuzzy matching: Optimized for datasets up to 100K records
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Import Errors**:
+
+   ```bash
+   # Make sure you're in the Python directory
+   cd Python
+   python -m dedupe_system.main --gui
+   ```
+
+2. **Streamlit Not Found**:
+
+   ```bash
+   pip install streamlit
+   ```
+
+3. **File Encoding Issues**:
+   - Save CSV files as UTF-8
+   - Use the system's automatic encoding detection
+
+4. **Memory Issues**:
+   - Process smaller files (< 50MB)
+   - Close other applications to free memory
+
+### Log Analysis
+
+Check the logs directory for detailed error information:
+
+```bash
+# View recent errors
+tail -f logs/errors_$(date +%Y%m%d).log
+
+# View system activity
+tail -f logs/system_$(date +%Y%m%d).log
+```
+
+## Development
+
+### Running Tests
+
+```bash
+# Run core component tests
+python test_loader.py
+python test_normalizer.py
+python test_exact_matcher.py
+python test_resolver.py
+python test_output_generator.py
+python test_error_handling.py
+
+# Run integration tests
+python test_system_integration.py
+python test_fuzzy_integration.py
+
+# Run all tests together
+python -m pytest test_*.py -v
+```
+
+### Code Structure
+
+The system follows a modular architecture with clear separation of concerns:
+
+- Core processing logic is independent of the GUI
+- All components use dependency injection for testability
+- Comprehensive error handling and logging throughout
+
+## Current Features
+
+### Core Functionality ✅
+
+- **Dual Detection Methods**: Both exact and fuzzy matching implemented
+- **Advanced Fuzzy Matching**: RapidFuzz with 5 configurable algorithms (WRatio, ratio, partial_ratio, token_sort_ratio, token_set_ratio)
+- **Smart Performance**: Blocking strategies for large datasets
+- **Interactive GUI**: Complete workflow with visual analytics
+- **Advanced Visualization**: Interactive charts, similarity distributions, performance metrics
+- **Manual Resolution Interface**: User decision override with batch processing
+- **Comprehensive Reporting**: Multiple export formats with detailed analysis
+
+### Technical Capabilities ✅
+
+- **File Support**: CSV and JSON with automatic encoding detection
+- **Data Validation**: Comprehensive input validation with detailed error reporting
+- **Multi-Algorithm Matching**: Hash-based exact + RapidFuzz fuzzy detection
+- **Data Normalization**: Text, numeric, date, phone, and email field normalization
+- **Performance Optimized**: O(n) exact matching, blocking for fuzzy matching
+- **Audit Trail**: Complete logging and audit trail for compliance
+- **Real-time Processing**: Progress tracking and performance metrics
+
+## Limitations
+
+- **Batch Processing**: Single file processing only
+- **Property-based Testing**: Comprehensive test suite using Hypothesis (optional enhancement)
+- **Enterprise Features**: Advanced compliance and audit features
+
+## Future Enhancements
+
+- **Multi-file Batch Processing**: Process multiple files simultaneously
+- **API Integration**: REST API for programmatic access
+- **Cloud Deployment**: Docker containerization and cloud-ready deployment
+- **Advanced Analytics**: Machine learning-based duplicate prediction
+- **Enterprise Security**: Role-based access control and encryption
+
+## Support
+
+For issues and questions:
+
+1. Check the troubleshooting section above
+2. Review log files in the `logs/` directory
+3. Ensure all dependencies are properly installed
+4. Verify file format requirements are met
+
+## License
+
+MIT License
+
+© 2026 Natasha
