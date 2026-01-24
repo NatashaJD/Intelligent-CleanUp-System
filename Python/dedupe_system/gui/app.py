@@ -4,17 +4,18 @@
 """
 Streamlit GUI Application for the Intelligent Duplicate Detection & Cleanup System.
 
-This module implements the main Streamlit interface with:
-- File upload widget with CSV/JSON support
-- File preview functionality showing first 10 records
-- File validation and error display
-- Progress indicators for file processing
-- Configuration panels for duplicate detection
-- Duplicate review and approval interface
-- Results dashboard with download options
+This module implements the comprehensive Streamlit interface with:
+- File upload widget with CSV/JSON support and validation
+- File preview functionality showing first 10 records with column analysis
+- Advanced configuration panel with exact and fuzzy matching options
+- Real-time progress indicators and performance metrics
+- Interactive duplicate review with manual decision override
+- Visual analytics dashboard with charts and statistics
+- Multiple export options (cleaned data, analysis reports, summaries)
+- Comprehensive resolution workflow with batch processing
 
 The GUI provides an intuitive interface for data analysts to configure and execute
-duplicate detection without command-line tools.
+both exact and fuzzy duplicate detection with advanced visualization and reporting.
 """
 
 import streamlit as st

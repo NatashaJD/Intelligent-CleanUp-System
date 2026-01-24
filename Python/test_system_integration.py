@@ -2,8 +2,8 @@
 """
 Integration test to verify the complete duplicate detection system works.
 
-This test creates sample data, runs it through the entire pipeline,
-and verifies the results.
+This test creates sample data, runs it through the entire pipeline including
+both exact and fuzzy matching, and verifies the results.
 """
 
 import sys
@@ -18,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from dedupe_system.core.loader import DataLoader
 from dedupe_system.core.normalizer import DataNormalizer
 from dedupe_system.core.exact_matcher import ExactMatcher
+from dedupe_system.core.fuzzy_matcher import FuzzyMatcher
 from dedupe_system.core.models import MatchingConfig
 
 
@@ -25,6 +26,8 @@ def test_complete_pipeline():
     """Test the complete duplicate detection pipeline."""
     
     print("🔍 Testing Intelligent Duplicate Detection System")
+    print("=" * 50)
+    print("🚀 Testing both exact and fuzzy matching capabilities")
     print("=" * 50)
     
     # Create sample data with duplicates
