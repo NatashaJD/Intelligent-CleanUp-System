@@ -114,7 +114,7 @@ Options:
 
 ## System Architecture
 
-```
+```text
 dedupe_system/
 ├── core/                   # Core processing components
 │   ├── loader.py          # File loading and validation
@@ -143,9 +143,7 @@ dedupe_system/
    - RapidFuzz-based fuzzy matching with blocking strategies
    - Configurable similarity thresholds and algorithms
 4. **Results Generation**: Create duplicate groups with similarity scores and recommendations
-5. **Interactive Review**: Manual decision override with batch processing capabilities
-6. **Export**: Generate cleaned datasets, analysis reports, and audit logs
-5. **Export**: Generate cleaned datasets and audit reports
+5. **Export**: Generate cleaned datasets, analysis reports, and audit logs
 
 ## Field Types and Normalization
 

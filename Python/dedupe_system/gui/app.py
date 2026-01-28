@@ -2,20 +2,16 @@
 # Copyright (c) 2026 Judy Natasha Wambui Gachanja
 
 """
-Streamlit GUI Application for the Intelligent Duplicate Detection & Cleanup System.
+User-Friendly Streamlit GUI for Duplicate Detection & Data Cleaning.
 
-This module implements the comprehensive Streamlit interface with:
-- File upload widget with CSV/JSON support and validation
-- File preview functionality showing first 10 records with column analysis
-- Advanced configuration panel with exact and fuzzy matching options
-- Real-time progress indicators and performance metrics
-- Interactive duplicate review with manual decision override
-- Visual analytics dashboard with charts and statistics
-- Multiple export options (cleaned data, analysis reports, summaries)
-- Comprehensive resolution workflow with batch processing
+This module provides a simple, step-by-step interface that:
+1. Guides users through file upload and preview
+2. Helps them select fields for duplicate detection
+3. Shows detected duplicates clearly with examples
+4. Lets users make cleaning decisions
+5. Actually cleans the data and provides downloadable results
 
-The GUI provides an intuitive interface for data analysts to configure and execute
-both exact and fuzzy duplicate detection with advanced visualization and reporting.
+Designed for non-technical users who need to clean their data efficiently.
 """
 
 import streamlit as st
@@ -38,6 +34,8 @@ from dedupe_system.core.exact_matcher import ExactMatcher
 from dedupe_system.core.fuzzy_matcher import FuzzyMatcher
 from dedupe_system.core.resolver import DuplicateResolver
 from dedupe_system.core.output_generator import OutputGenerator
+from dedupe_system.core.golden_record import GoldenRecordCreator
+from dedupe_system.core.audit_logger import get_audit_logger
 from dedupe_system.core.models import MatchingConfig, ValidationResult, DuplicateGroup
 from dedupe_system.core.exceptions import FileProcessingError, DataValidationError
 from dedupe_system.core.logging_config import get_logger
@@ -59,6 +57,8 @@ def initialize_session_state():
         st.session_state.processing_complete = False
     if 'current_step' not in st.session_state:
         st.session_state.current_step = 'upload'
+    if 'audit_logger' not in st.session_state:
+        st.session_state.audit_logger = get_audit_logger("logs")
 
 
 def render_file_upload_section():
@@ -141,6 +141,11 @@ def process_uploaded_file(uploaded_file):
             # Store in session state
             st.session_state.df = df
             st.session_state.validation_result = validation_result
+            
+            # Log data loading
+            st.session_state.audit_logger.log_data_loaded(
+                uploaded_file.name, len(df), list(df.columns)
+            )
             
             logger.info(f"File loaded successfully: {len(df)} rows, {len(df.columns)} columns")
             
@@ -245,16 +250,31 @@ def render_configuration_section():
     st.write("Select which fields to use for duplicate detection:")
     
     available_fields = list(df.columns)
+    
+    # Show helpful guidance but let user choose
+    st.info("💡 **Tip**: For best results, select fields like name, email, phone, address. "
+           "Avoid unique ID fields (id, index, key) as they prevent duplicate detection.")
+    
     selected_fields = st.multiselect(
         "Key fields for matching:",
         available_fields,
-        default=available_fields[:3] if len(available_fields) >= 3 else available_fields,
-        help="Choose the most important fields that identify unique records"
+        default=[],  # No auto-selection - user must choose
+        help="Choose the fields that should be similar for records to be considered duplicates"
     )
     
     if not selected_fields:
         st.warning("Please select at least one field for matching.")
         return
+    
+    # Warn if ID-like fields are selected
+    id_field_names = ['id', 'ID', 'Id', 'index', 'INDEX', 'Index', 'key', 'KEY', 'Key', 
+                      'record_id', 'recordid', 'row_id', 'rowid', 'pk', 'primary_key']
+    
+    selected_id_fields = [field for field in selected_fields if field in id_field_names]
+    if selected_id_fields:
+        st.warning(f"⚠️ Warning: You've selected ID-like fields: {selected_id_fields}. "
+                  f"ID fields are usually unique and may prevent duplicate detection. "
+                  f"Consider removing them and using fields like name, email, phone instead.")
     
     # Field type configuration
     st.subheader("Field Types")
@@ -262,16 +282,36 @@ def render_configuration_section():
     
     field_types = {}
     for field in selected_fields:
+        # Suggest default field type based on field name
+        default_type = "text"
+        field_lower = field.lower()
+        if any(name_word in field_lower for name_word in ['name', 'first', 'last', 'full']):
+            default_type = "text_aggressive"
+        elif 'email' in field_lower:
+            default_type = "email"
+        elif any(phone_word in field_lower for phone_word in ['phone', 'tel', 'mobile', 'cell']):
+            default_type = "phone"
+        elif any(date_word in field_lower for date_word in ['date', 'time', 'created', 'updated']):
+            default_type = "date"
+        elif any(num_word in field_lower for num_word in ['id', 'number', 'amount', 'price', 'cost']):
+            default_type = "numeric"
+        elif any(addr_word in field_lower for addr_word in ['address', 'street', 'city', 'state']):
+            default_type = "text_aggressive"
+        
+        type_options = ["text", "text_aggressive", "numeric", "date", "phone", "email"]
+        default_index = type_options.index(default_type) if default_type in type_options else 0
+        
         field_types[field] = st.selectbox(
             f"Type for '{field}':",
-            ["text", "numeric", "date", "phone", "email"],
+            type_options,
+            index=default_index,
             key=f"type_{field}",
-            help="Choose the appropriate data type for better normalization"
+            help="Choose the appropriate data type for better normalization. Use 'text_aggressive' for names and addresses."
         )
     
     # Fuzzy matching settings (if applicable)
     fuzzy_threshold = 80.0
-    similarity_algorithm = "levenshtein"
+    similarity_algorithm = "WRatio"
     
     if "fuzzy" in matching_mode.lower():
         st.subheader("Fuzzy Matching Settings")
@@ -308,6 +348,15 @@ def render_configuration_section():
         
         # Start processing button
         if st.button("🔍 Start Duplicate Detection", type="primary"):
+            # Log user action
+            st.session_state.audit_logger.log_user_action(
+                "START_DUPLICATE_DETECTION",
+                details={
+                    "selected_fields": selected_fields,
+                    "field_types": field_types,
+                    "matching_mode": matching_mode
+                }
+            )
             run_duplicate_detection()
 
 
@@ -337,6 +386,9 @@ def run_duplicate_detection():
         normalizer = DataNormalizer()
         df_normalized = normalizer.normalize_dataframe(df, field_types)
         
+        # Log normalization
+        st.session_state.audit_logger.log_normalization(field_types, len(df))
+        
         progress_bar.progress(30)
         
         # Step 2: Duplicate detection
@@ -346,29 +398,57 @@ def run_duplicate_detection():
         
         if config.exact_matching_enabled:
             status_text.text("Step 2a/3: Running exact matching...")
-            exact_matcher = ExactMatcher(normalizer)
-            exact_groups = exact_matcher.find_exact_duplicates(
-                df_normalized, 
-                config.key_fields, 
-                field_types, 
-                use_normalized=True
-            )
-            duplicate_groups.extend(exact_groups)
-            progress_bar.progress(50)
+            try:
+                exact_matcher = ExactMatcher(normalizer)
+                exact_groups = exact_matcher.find_exact_duplicates(
+                    df_normalized, 
+                    config.key_fields, 
+                    field_types, 
+                    use_normalized=True
+                )
+                duplicate_groups.extend(exact_groups)
+                st.write(f"🎯 Exact matching found {len(exact_groups)} groups")
+                
+                # Log exact matching
+                st.session_state.audit_logger.log_duplicate_detection(
+                    "exact", config.key_fields, len(exact_groups),
+                    sum(len(g.records) for g in exact_groups),
+                    {"field_types": field_types}
+                )
+                progress_bar.progress(50)
+            except Exception as e:
+                st.error(f"Exact matching failed: {e}")
+                logger.error(f"Exact matching error: {e}")
         
         if config.fuzzy_matching_enabled:
             status_text.text("Step 2b/3: Running fuzzy matching...")
-            fuzzy_matcher = FuzzyMatcher(normalizer)
-            fuzzy_groups = fuzzy_matcher.find_fuzzy_duplicates(
-                df_normalized,
-                config.key_fields,
-                threshold=config.fuzzy_threshold,
-                algorithm=config.similarity_algorithm,
-                field_configs=field_types,
-                use_normalized=True
-            )
-            duplicate_groups.extend(fuzzy_groups)
-            progress_bar.progress(70)
+            try:
+                fuzzy_matcher = FuzzyMatcher(normalizer)
+                fuzzy_groups = fuzzy_matcher.find_fuzzy_duplicates(
+                    df_normalized,
+                    config.key_fields,
+                    threshold=config.fuzzy_threshold,
+                    algorithm=config.similarity_algorithm,
+                    field_configs=field_types,
+                    use_normalized=True
+                )
+                duplicate_groups.extend(fuzzy_groups)
+                st.write(f"🔍 Fuzzy matching found {len(fuzzy_groups)} groups")
+                
+                # Log fuzzy matching
+                st.session_state.audit_logger.log_duplicate_detection(
+                    "fuzzy", config.key_fields, len(fuzzy_groups),
+                    sum(len(g.records) for g in fuzzy_groups),
+                    {
+                        "threshold": config.fuzzy_threshold,
+                        "algorithm": config.similarity_algorithm,
+                        "field_types": field_types
+                    }
+                )
+                progress_bar.progress(70)
+            except Exception as e:
+                st.error(f"Fuzzy matching failed: {e}")
+                logger.error(f"Fuzzy matching error: {e}")
         
         # Step 3: Results preparation
         status_text.text("Step 3/3: Preparing results...")
@@ -376,6 +456,15 @@ def run_duplicate_detection():
         
         # Calculate processing time
         processing_time = time.time() - start_time
+        
+        # Log duplicate groups
+        for group in duplicate_groups:
+            st.session_state.audit_logger.log_duplicate_group(group)
+        
+        # Log performance
+        st.session_state.audit_logger.log_system_performance(
+            processing_time, len(df)
+        )
         
         # Store results
         st.session_state.duplicate_groups = duplicate_groups
@@ -610,27 +699,114 @@ def apply_resolution_decisions():
     try:
         st.info("🔄 Applying resolution decisions...")
         
-        # For now, we'll simulate the resolution process
-        # In a full implementation, this would use the DuplicateResolver
-        
         decisions = st.session_state.resolution_decisions
+        duplicate_groups = st.session_state.duplicate_groups
         total_groups = len(decisions)
         
-        # Simulate processing
+        # Initialize golden record creator
+        golden_record_creator = GoldenRecordCreator()
+        
+        # Process each decision
         progress_bar = st.progress(0)
+        processed_groups = []
         
         for i, (group_id, decision) in enumerate(decisions.items()):
             progress_bar.progress((i + 1) / total_groups)
+            
+            # Find the corresponding duplicate group
+            group = next((g for g in duplicate_groups if g.group_id == group_id), None)
+            if not group:
+                continue
+            
+            # Log resolution decision
+            st.session_state.audit_logger.log_resolution_decision(
+                group_id, decision['action'], user_override=True
+            )
+            
+            # Apply resolution based on decision
+            if decision['action'] in ['Merge Records', 'Follow Recommendation']:
+                # Create golden record
+                try:
+                    golden_record = golden_record_creator.create_golden_record(
+                        group, 
+                        timestamp_field='created_date',  # Use if available
+                        survivorship_strategy='most_complete'
+                    )
+                    
+                    # Log golden record creation
+                    source_ids = [str(r.get('id', i)) for i, r in enumerate(group.records)]
+                    st.session_state.audit_logger.log_golden_record_creation(
+                        group_id, source_ids, 
+                        str(golden_record.get('id', 'generated')),
+                        'most_complete'
+                    )
+                    
+                    processed_groups.append({
+                        'group_id': group_id,
+                        'action': decision['action'],
+                        'result': 'golden_record_created',
+                        'golden_record': golden_record
+                    })
+                    
+                except Exception as e:
+                    st.warning(f"Failed to create golden record for group {group_id}: {e}")
+                    processed_groups.append({
+                        'group_id': group_id,
+                        'action': decision['action'],
+                        'result': 'error',
+                        'error': str(e)
+                    })
+            
+            elif decision['action'] == 'Delete Duplicates':
+                # Log deletions (soft delete)
+                for record in group.records[1:]:  # Keep first, delete rest
+                    record_id = str(record.get('id', 'unknown'))
+                    st.session_state.audit_logger.log_record_deletion(
+                        record_id, group_id, 'duplicate_removal'
+                    )
+                
+                processed_groups.append({
+                    'group_id': group_id,
+                    'action': decision['action'],
+                    'result': 'duplicates_deleted',
+                    'kept_record': group.records[0],
+                    'deleted_count': len(group.records) - 1
+                })
+            
+            else:  # Keep All, Flag for Review
+                processed_groups.append({
+                    'group_id': group_id,
+                    'action': decision['action'],
+                    'result': 'no_changes',
+                    'records_preserved': len(group.records)
+                })
+            
             time.sleep(0.1)  # Simulate processing time
         
+        # Store processing results
+        st.session_state.resolution_results = processed_groups
+        
+        # Show results summary
         st.success(f"✅ Successfully processed {total_groups} duplicate groups!")
-        st.info("💡 In a full implementation, this would generate cleaned data files and audit logs.")
+        
+        # Show detailed results
+        golden_records_created = len([r for r in processed_groups if r['result'] == 'golden_record_created'])
+        deletions_performed = len([r for r in processed_groups if r['result'] == 'duplicates_deleted'])
+        
+        if golden_records_created > 0:
+            st.info(f"🌟 Created {golden_records_created} golden records using survivorship rules")
+        
+        if deletions_performed > 0:
+            st.info(f"🗑️ Performed soft deletion on {deletions_performed} duplicate groups")
         
         # Mark as processed
         st.session_state.resolutions_applied = True
         
     except Exception as e:
         st.error(f"Error applying resolutions: {str(e)}")
+        st.session_state.audit_logger.log_error(
+            "RESOLUTION_ERROR", str(e), {"context": "apply_resolution_decisions"}
+        )
 
 
 def download_analysis_report():
@@ -723,6 +899,11 @@ def download_cleaned_data(df: pd.DataFrame, data_type: str):
             data=csv_data,
             file_name=filename,
             mime="text/csv"
+        )
+        
+        # Log data export
+        st.session_state.audit_logger.log_data_export(
+            f"{data_type}_csv", len(df), filename
         )
         
         st.success(f"✅ {data_type.title()} data ready for download!")

@@ -94,8 +94,8 @@ def launch_gui():
     import subprocess
     import os
     
-    # Get the path to the main GUI app (enhanced version with fuzzy matching and charts)
-    gui_app_path = Path(__file__).parent / "gui" / "app.py"
+    # Get the path to the simple GUI app (user-friendly version)
+    gui_app_path = Path(__file__).parent / "gui" / "app_simple.py"
     
     # Launch Streamlit
     try:

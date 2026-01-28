@@ -1,0 +1,3 @@
+2026-01-25 20:56:42,554 - dedupe_system - INFO - logging_config:75 - Logging system initialized
+2026-01-25 20:56:42,555 - dedupe_system - INFO - main:68 - Starting Intelligent Duplicate Detection & Cleanup System
+2026-01-25 20:56:42,555 - dedupe_system - INFO - main:80 - No mode specified, launching GUI by default
