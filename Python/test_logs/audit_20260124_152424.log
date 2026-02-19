@@ -1,5 +1,0 @@
-{"timestamp": "2026-01-24 15:24:24,956", "level": "INFO", "message": {"record_id": "record_001", "action": "MERGED", "reason": "Merged with records 003, 007", "similarity_score": 100.0, "user_decision": True, "timestamp": "2026-01-24T15:24:24.956080"}}
-{"timestamp": "2026-01-24 15:24:24,956", "level": "INFO", "message": {"record_id": "record_002", "action": "KEPT", "reason": "Selected as best record", "similarity_score": None, "user_decision": True, "timestamp": "2026-01-24T15:24:24.956622"}}
-{"timestamp": "2026-01-24 15:24:24,957", "level": "INFO", "message": {"record_id": "record_005", "action": "SOFT_DELETED", "reason": "Duplicate of record 002", "similarity_score": 95.5, "user_decision": False, "timestamp": "2026-01-24T15:24:24.957003"}}
-{"timestamp": "2026-01-24 15:24:24,957", "level": "INFO", "message": {"event": "processing_start", "total_records": 10000, "config": {"matching_mode": "both", "fuzzy_threshold": 85, "fields": ["name", "email"]}}}
-{"timestamp": "2026-01-24 15:24:24,958", "level": "INFO", "message": {"event": "processing_end", "stats": {"total_processed": 10000, "duplicates_found": 150, "actions_taken": 75, "processing_time": 12.5}}}

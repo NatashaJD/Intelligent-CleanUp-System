@@ -1,4 +1,0 @@
-"record_id","action","reason","similarity_score","timestamp","user_decision"
-"1","MERGED","Merged with records 3,7","100.0","2026-01-24T15:19:33.224836","True"
-"2","KEPT","Selected as best record","","2026-01-24T15:19:33.224868","True"
-"5","SOFT_DELETED","Duplicate of record 2","100.0","2026-01-24T15:19:33.224873","True"
