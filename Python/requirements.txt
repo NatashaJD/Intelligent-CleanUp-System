@@ -30,3 +30,8 @@ mypy>=1.5.0    # Type checking
 # Data visualization (for GUI charts)
 plotly>=5.15.0
 matplotlib>=3.7.0
+
+# Database connectivity (optional)
+pymysql>=1.1.0  # MySQL support
+psycopg2-binary>=2.9.0  # PostgreSQL support
+sqlalchemy>=2.0.0  # Database ORM (optional)
